@@ -82,7 +82,7 @@ namespace Save_Yorself
                 {
                     uint x;
                     string z;
-                    if (me.Player.Hero.Level < 11  && Utils.SleepCheck("1") && me.Player.Hero.IsAlive)
+                    if (me.Player.Hero.Level < 11  && Utils.SleepCheck("1") && me.Player.Hero.IsAlive && me.ClassID == ClassID.CDOTA_Unit_Hero_Terrorblade)
                     {
                         if (me.Player.Hero.Health < 200)
                         {
@@ -94,7 +94,7 @@ namespace Save_Yorself
                         }
 
                     }
-                    if (me.Player.Hero.Level >11  && Utils.SleepCheck("2") && me.Player.Hero.IsAlive)
+                    if (me.Player.Hero.Level >11  && Utils.SleepCheck("2") && me.Player.Hero.IsAlive && me.ClassID == ClassID.CDOTA_Unit_Hero_Terrorblade)
                     {
                         
                         if (me.Player.Hero.Health < 400)
