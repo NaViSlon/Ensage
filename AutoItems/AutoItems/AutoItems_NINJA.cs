@@ -1,65 +1,132 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using Ensage;
 using Ensage.Common;
-using Ensage.Common.Extensions;
-using Ensage.Common.Menu;
+using SharpDX;
+using System.Windows.Input;
 
-namespace AutoItems
+namespace Save_Yorself
 {
-    class AutoItems_NINJA
+    class Save_Yorself
     {
+        private const Key toggleKey = Key.G;
+        private static bool active = true;
         private static Hero me;
-        private static Item item_bottle, item_phase_boots, item_magic_stick, item_magic_wand;
-        private static double PercentStickUse = 0.2;
-        private static readonly uint WM_MOUSEWHEEL = 0x020A;
-        private static readonly Menu Menu = new Menu("Auto Items", "Auto Items", true);
-        private static readonly Menu _item_config = new Menu("Items", "Items");
-        private static readonly Menu _percent_config = new Menu("Stick Percent Config", "Stick Percent Config");
-        private static readonly Dictionary<string, bool> list_of_items = new Dictionary<string, bool>
+        private static System.Collections.Generic.List<Ensage.Hero> enemies;
+        private static SideMessage informationmessage;
+        private static bool loaded;
+        private static string toggleText;
+
+       
+        private static void Game_OnUpdate(EventArgs args)
+        {
+            if (!loaded)
             {
-                {"item_bottle",true},
-                {"item_phase_boots",true},
-                {"item_magic_stick",true},
-                {"item_magic_wand",true}
-            };
+                me = ObjectMgr.LocalHero;
+
+                if (!Game.IsInGame || Game.IsWatchingGame || me == null || Game.IsChatOpen)
+                {
+                    return;
+                }
+
+                loaded = true;
+                toggleText = "(" + toggleKey + ") AutoSunder: On";
+            }
+
+            if (me == null || !me.IsValid)
+            {
+                loaded = false;
+                me = ObjectMgr.LocalHero;
+                active = false;
+            }
+
+            if (Game.IsPaused) return;
+
+            if (Game.IsKeyDown(toggleKey) && Utils.SleepCheck("toggle") && !Game.IsChatOpen && !Game.IsPaused && !Game.IsWatchingGame)
+            {
+                if (!active)
+                {
+                    active = true;
+                    toggleText = "(" + toggleKey + ") AutoSunder: On";
+                }
+                else
+                {
+                    active = false;
+                    toggleText = "(" + toggleKey + ") AutoSunder: Off";
+                }
+
+                Utils.Sleep(200, "toggle");
+            }
+        }
         static void Main(string[] args)
         {
-            Menu.AddSubMenu(_item_config);
-            Menu.AddSubMenu(_percent_config);
-            _item_config.AddItem(new MenuItem("Items: ", "Items: ").SetValue(new AbilityToggler(list_of_items)));
-            _percent_config.AddItem(new MenuItem("Percent Configuration", "Percent Configuration").SetValue(new Slider(20, 10, 100)));
-            Menu.AddToMainMenu();
+            Game.OnUpdate += Game_OnUpdate;
+            Drawing.OnDraw += Drawing_OnDraw;
             Game.OnUpdate += Tick;
-            PrintSuccess(string.Format("> Auto Items Loaded!"));
+            PrintSuccess(string.Format("> Save Yourself"));
         }
         public static void Tick(EventArgs args)
         {
-            if (!Game.IsInGame || Game.IsPaused || Game.IsWatchingGame || Game.IsChatOpen)
+            if (!Game.IsInGame || Game.IsPaused || Game.IsWatchingGame)
                 return;
             me = ObjectMgr.LocalHero;
             if (me == null)
                 return;
+            enemies = ObjectMgr.GetEntities<Hero>().Where(x => me.Team != x.Team && !x.IsIllusion && x.IsAlive).ToList();
+            if (enemies == null)
+                return;
 
-            item_bottle = me.FindItem("item_bottle");
-            item_phase_boots = me.FindItem("item_phase_boots");
-            item_magic_stick = me.FindItem("item_magic_stick");
-            item_magic_wand = me.FindItem("item_magic_wand");
-            PercentStickUse =((double)Menu.Item("Percent Configuration").GetValue<Slider>().Value / 100);
-            if (me.IsAlive && !me.IsUnitState(UnitState.Invisible) && !me.IsChanneling() && me.CanUseItems() && Utils.SleepCheck("AutoItems"))
+            foreach (var v in enemies)
             {
-                if (item_bottle != null && me.Modifiers.Any(x => x.Name == "modifier_fountain_aura_buff") && !me.Modifiers.Any(x => x.Name == "modifier_bottle_regeneration") && (me.Health < me.MaximumHealth || me.Mana < me.MaximumMana))
-                    item_bottle.UseAbility();
-                if (item_phase_boots != null && item_phase_boots.CanBeCasted() && me.NetworkActivity == NetworkActivity.Move)
-                    item_phase_boots.UseAbility();
-                if (item_magic_stick != null && item_magic_stick.CanBeCasted() && item_magic_stick.CurrentCharges > 0 && (double)me.Health / me.MaximumHealth < PercentStickUse)
-                    item_magic_stick.UseAbility();
-                if (item_magic_wand != null && item_magic_wand.CanBeCasted() && item_magic_wand.CurrentCharges > 0 && (double) me.Health / me.MaximumHealth < PercentStickUse)
-                    item_magic_wand.UseAbility();
-                Utils.Sleep(250, "AutoItems");
+                if (active)
+                {
+                    uint x;
+                    string z;
+                    if (me.Player.Hero.Level < 11  && Utils.SleepCheck("1") && me.Player.Hero.IsAlive)
+                    {
+                        if (me.Player.Hero.Health < 200)
+                        {
+                            if (v.Player.Hero.Health > me.Player.Hero.Health)
+                            {
+                                me.Spellbook.SpellR.UseAbility(v.Player.Hero);
+                                Utils.Sleep(1000, "1");
+                            }
+                        }
+
+                    }
+                    if (me.Player.Hero.Level >11  && Utils.SleepCheck("2") && me.Player.Hero.IsAlive)
+                    {
+                        
+                        if (me.Player.Hero.Health < 400)
+                        {
+                            if (v.Player.Hero.Health > me.Player.Hero.Health)
+                            {
+
+                                me.Spellbook.SpellR.UseAbility(v.Player.Hero);
+                                Utils.Sleep(1000, "2");
+                            }
+                        }
+
+                    }
+
+                }
             }
         }
+
+
+
+
+        private static void Drawing_OnDraw(EventArgs args)
+        {
+            if (loaded)
+            {
+                Drawing.DrawText("Terror!", new Vector2(Drawing.Width * 5 / 100, Drawing.Height * 19 / 100), Color.LightGreen, FontFlags.DropShadow);
+                Drawing.DrawText(toggleText,
+                    new Vector2(Drawing.Width * 5 / 100, Drawing.Height * 20 / 100), Color.LightGreen, FontFlags.DropShadow);
+            }
+        }   
+
+
         private static void PrintSuccess(string text, params object[] arguments)
         {
             PrintEncolored(text, ConsoleColor.Green, arguments);
