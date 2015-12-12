@@ -1,16 +1,16 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Auto Items")]
-[assembly: AssemblyDescription("Auto Items")]
+[assembly: AssemblyTitle("Save Yorself")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Edu Lopes & Cia")]
-[assembly: AssemblyProduct("AutoItems.properties")]
-[assembly: AssemblyCopyright("Copyright ©  2015 - ninjaman")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SaveYorself by NaVi_Slon")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("21f18bef-1be3-4a3d-b2a1-4a1ac7e66f00")]
+[assembly: Guid("5ac8ad3a-a5aa-433d-90d3-afad8d17113e")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1")]
+[assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1")]
