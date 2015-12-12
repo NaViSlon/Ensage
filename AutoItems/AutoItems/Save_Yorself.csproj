@@ -54,7 +54,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Be Aware Ninja.cs" />
+    <Compile Include="Terror.cs" />
     <Compile Include="properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
