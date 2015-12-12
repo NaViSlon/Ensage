@@ -1,20 +1,35 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1C0FC0E6-76C1-43DE-8E64-E3DB8425CB2A}</ProjectGuid>
+    <ProjectGuid>{90C17F38-9E37-4253-AE25-7B097CF99A62}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AutoItems</RootNamespace>
-    <AssemblyName>AutoItems</AssemblyName>
+    <RootNamespace>Save_Yorself</RootNamespace>
+    <AssemblyName>Save_Yorself</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <PreBuildEvent />
     <PostBuildEvent />
     <OutputPath>bin\Release</OutputPath>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -39,34 +54,51 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoItems_NINJA.cs" />
+    <Compile Include="Be Aware Ninja.cs" />
     <Compile Include="properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="clipper_library">
-      <HintPath>D:\EnsageSharp\LeagueSharp\System\clipper_library.dll</HintPath>
+      <HintPath>D:\папки\LeagueSharp\System\clipper_library.dll</HintPath>
     </Reference>
     <Reference Include="Ensage">
-      <HintPath>D:\EnsageSharp\LeagueSharp\System\Ensage.dll</HintPath>
+      <HintPath>D:\папки\LeagueSharp\System\Ensage.dll</HintPath>
     </Reference>
     <Reference Include="Ensage.Common">
-      <HintPath>D:\EnsageSharp\LeagueSharp\System\Ensage.Common.dll</HintPath>
+      <HintPath>D:\папки\LeagueSharp\System\Ensage.Common.dll</HintPath>
     </Reference>
     <Reference Include="Ensage.Menu">
-      <HintPath>D:\EnsageSharp\LeagueSharp\System\Ensage.Menu.dll</HintPath>
+      <HintPath>D:\папки\LeagueSharp\System\Ensage.Menu.dll</HintPath>
     </Reference>
     <Reference Include="HotKeyChanger">
-      <HintPath>D:\EnsageSharp\LeagueSharp\System\HotKeyChanger.dll</HintPath>
+      <HintPath>D:\папки\LeagueSharp\System\HotKeyChanger.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
-      <HintPath>D:\EnsageSharp\LeagueSharp\System\SharpDX.dll</HintPath>
+      <HintPath>D:\папки\LeagueSharp\System\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Direct3D9">
-      <HintPath>D:\EnsageSharp\LeagueSharp\System\SharpDX.Direct3D9.dll</HintPath>
+      <HintPath>D:\папки\LeagueSharp\System\SharpDX.Direct3D9.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
