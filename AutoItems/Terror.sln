@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Save_Yorself", "Be Aware Ninja\Save_Yorself.csproj", "{90C17F38-9E37-4253-AE25-7B097CF99A62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Save_Yorself", "AutoItems\Save_Yorself.csproj", "{90C17F38-9E37-4253-AE25-7B097CF99A62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
